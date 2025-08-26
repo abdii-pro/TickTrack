@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TickTrack | Modern Task Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="/">
+                <i class="fa-solid fa-rocket"></i>
+                TickTrack
+            </a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link active" href="#"><i class="fa-solid fa-home"></i> Home</a></li>
+                <li><a class="nav-link" href="/about"><i class="fa-solid fa-info-circle"></i> About</a></li>
+            </ul>
+            <form class="search-form" method="get" action="/">
+                <input type="search" name="q" value="{{ search_q or '' }}" class="search-input" placeholder="Search tasks...">
+                <button class="search-btn" type="submit">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+            </form>
+            <button class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Todo List spanning full width -->
+        <div style="grid-column: 1 / -1;">
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-tasks"></i>
+                    Your Todos
+                </h2>
+
+                {% if search_q %}
+                <div class="alert alert-dark" style="margin-bottom:1rem;">
+                    Showing results for "<strong>{{ search_q }}</strong>" — {{ allTodo|length }} item(s)
+                </div>
+                {% endif %}
+
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>sNo</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for todo in allTodo %}
+                            <tr class="fade-in {% if todo.completed %}completed{% endif %}">
+                                <td>{{ todo.sno }}</td>
+                                <td>{{ todo.title }}</td>
+                                <td>{{ todo.desc }}</td>
+                                <td>{{ todo.formatted_date }}</td>
+                                <td class="action-buttons">
+                                    <a href="/update/{{ todo.sno }}" class="btn btn-outline btn-sm" title="Update">
+                                        <i class="fa-solid fa-edit"></i>
+                                    </a>
+                                    <a href="/complete/{{ todo.sno }}" class="btn btn-success btn-sm" title="Toggle Complete">
+                                        {% if todo.completed %}
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                        {% else %}
+                                        <i class="fa-solid fa-check"></i>
+                                        {% endif %}
+                                    </a>
+                                    <a href="/delete/{{ todo.sno }}" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Delete this todo?');">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards moved below the todo list -->
+        <div style="grid-column: 1 / -1;">
+            <div class="stats-container" style="margin-top:1.5rem;">
+                <div class="stat-card">
+                    <span class="stat-value">{{ total }}</span>
+                    <span class="stat-label">Total Tasks</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">{{ completed }}</span>
+                    <span class="stat-label">Completed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">{{ pending }}</span>
+                    <span class="stat-label">Pending</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="floating-btn">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

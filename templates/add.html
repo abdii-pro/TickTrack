@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Todo | TickTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="/">
+                <i class="fa-solid fa-rocket"></i>
+                TickTrack
+            </a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link" href="/"><i class="fa-solid fa-home"></i> Home</a></li>
+                <li><a class="nav-link" href="/about"><i class="fa-solid fa-info-circle"></i> About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="display:block;">
+        <div class="center-card glass">
+            <div class="text-center" style="max-width:480px; margin:0 auto;">
+                <h2 class="section-title" style="justify-content:center;"><i class="fa-solid fa-plus-circle"></i> New Task</h2>
+                <p class="form-note" style="text-align:center; margin-bottom:2rem;">Create a new task with a title and optional description</p>
+
+                <form action="/add" method="post">
+                    <div class="form-group">
+                        <label for="title" class="form-label">Task Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="What needs to be done?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="form-label">Task Description</label>
+                        <textarea class="form-control" id="desc" name="desc" placeholder="Add more details about this task..." rows="3"></textarea>
+                    </div>
+
+                    <div style="display:flex; gap:1rem; justify-content:center; margin-top:2rem;">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Create Task</button>
+                        <a href="/" class="btn btn-outline"><i class="fa-solid fa-times"></i> Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

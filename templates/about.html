@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | TickTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="/">
+                <i class="fa-solid fa-rocket"></i>
+                TickTrack
+            </a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link" href="/"><i class="fa-solid fa-home"></i> Home</a></li>
+                <li><a class="nav-link active" href="/about"><i class="fa-solid fa-info-circle"></i> About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <div style="padding:3rem 0;">
+        <div class="container" style="display:block; max-width:1000px; margin:0 auto;">
+            <div class="card glass" style="width:100%; padding:3rem; text-align:center;">
+                <!-- App Preview -->
+                <div style="display:flex; justify-content:center; margin-bottom:2.5rem;">
+                    <div style="width:200px; height:200px; border-radius:50%; overflow:hidden; 
+                                box-shadow:var(--shadow-lg); border:4px solid var(--lighter); 
+                                background:var(--light);">
+                        <img src="{{ url_for('static', filename='image.png') }}" alt="TickTrack Interface" 
+                             style="width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform 0.3s ease;"
+                             onmouseover="this.style.transform='scale(1.1)'" 
+                             onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <h1 class="section-title" style="justify-content:center; font-size:2.5rem; margin-bottom:1.5rem;">
+                    <i class="fa-solid fa-rocket"></i> About TickTrack
+                </h1>
+                <p style="color:var(--gray); font-size:1.2rem; line-height:1.7; margin-bottom:2.5rem; max-width:800px; margin-left:auto; margin-right:auto;">
+                    A simple yet powerful todo app built with Flask and SQLite. Stay organized, track your progress, 
+                    and boost your productivity with our clean and intuitive interface.
+                </p>
+                <div style="display:flex; gap:1.5rem; justify-content:center;">
+                    <a href="/" class="btn btn-primary" style="padding:1rem 2rem;">
+                        <i class="fa-solid fa-play"></i> Get Started
+                    </a>
+                    <a href="https://github.com/abdii-pro/TickTrack" target="_blank" class="btn btn-outline" style="padding:1rem 2rem;">
+                        <i class="fa-brands fa-github"></i> View Source
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Footer -->
+    <footer style="padding:2rem 0; text-align:center; border-top:1px solid var(--light);">
+        <div style="max-width:600px; margin:0 auto; padding:0 1.5rem;">
+            <p style="color:var(--gray); font-size:1.1rem;">
+                © 2025 TickTrack | Built with <i class="fa-solid fa-heart" style="color:var(--primary);"></i> by
+                <a href="https://github.com/abdii-pro" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:600;">
+                    Abdullah Maqsood
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
